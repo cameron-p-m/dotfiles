@@ -82,7 +82,7 @@ PROMPT='%{$fg_bold[red]%}➜ %{$fg_bold[green]%} %{$fg[cyan]%}%2d %{$fg_bold[blu
 local upstream
 if (( ${+ZSH_THEME_GIT_SHOW_UPSTREAM} )); then
  upstream=$(__git_prompt_git rev-parse --abbrev-ref --symbolic-full-name "@{upstream}" 2>/dev/null) \
- && upstream=" -> ${upstream}"
+ && upstream=" ➜ ${upstream}"
 fi
 
 RPROMPT='%{$fg_bold[red]%}$upstream%{$reset_color%}'
@@ -91,4 +91,4 @@ RPROMPT='%{$fg_bold[red]%}$upstream%{$reset_color%}'
 alias gl='git log --date=short --pretty=format:'\''%Cgreen%h %Cblue%cd %Cred%an%Creset: %s'\'
 
 #sources
-source /Users/cameronmorgan/src/github.com/zsh-users/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source /Users/cameronmorgan/src/github/zsh-users/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
