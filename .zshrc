@@ -68,6 +68,16 @@ function parse_git_dirty() {
   else
     echo "$ZSH_THEME_GIT_PROMPT_CLEAN"
   fi
+  
+  #right prompt
+  # Use global ZSH_THEME_GIT_SHOW_UPSTREAM=1 for including upstream remote info
+  local upstream
+  if (( ${+ZSH_THEME_GIT_SHOW_UPSTREAM} )); then
+    upstream=$(__git_prompt_git rev-parse --abbrev-ref --symbolic-full-name "@{upstream}" 2>/dev/null)\
+    && upstream=" ➜ ${upstream}"
+  fi
+
+  RPROMPT='%{$fg_bold[red]%}$upstream%{$reset_color%}'
 }
 
 # Format the vcs_info_msg_0_ variable
@@ -76,16 +86,6 @@ zstyle ':vcs_info:git:*' formats '[%b]'
 # Set up the prompt (with git branch name)
 setopt PROMPT_SUBST
 PROMPT='%{$fg_bold[red]%}➜ %{$fg_bold[green]%} %{$fg[cyan]%}%2d %{$fg_bold[blue]%}$(git_prompt_info)%{$fg_bold[blue]%} % %{$reset_color%}'
-
-#right prompt
-# Use global ZSH_THEME_GIT_SHOW_UPSTREAM=1 for including upstream remote info
-local upstream
-if (( ${+ZSH_THEME_GIT_SHOW_UPSTREAM} )); then
- upstream=$(__git_prompt_git rev-parse --abbrev-ref --symbolic-full-name "@{upstream}" 2>/dev/null) \
- && upstream=" ➜ ${upstream}"
-fi
-
-RPROMPT='%{$fg_bold[red]%}$upstream%{$reset_color%}'
 
 #aliases
 alias gl='git log --date=short --pretty=format:'\''%Cgreen%h %Cblue%cd %Cred%an%Creset: %s'\'
