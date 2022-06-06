@@ -9,6 +9,8 @@
 autoload -Uz vcs_info
 autoload -U colors && colors
 precmd() { vcs_info }
+autoload -Uz compinit
+compinit
 
 #colors
 ZSH_THEME_GIT_PROMPT_PREFIX="["
@@ -22,6 +24,15 @@ ZSH_THEME_GIT_PROMPT_RENAMED="%{$fg[blue]%} ➦"
 ZSH_THEME_GIT_PROMPT_UNMERGED="%{$fg[magenta]%} ✂"
 ZSH_THEME_GIT_PROMPT_UNTRACKED="%{$fg[grey]%} ✱"
 ZSH_THEME_GIT_SHOW_UPSTREAM=1
+
+#history search
+# start typing + [Up-Arrow] - fuzzy find history forward
+autoload -U up-line-or-beginning-search
+autoload -U down-line-or-beginning-search
+zle -N up-line-or-beginning-search
+zle -N down-line-or-beginning-search
+bindkey "^[[A" up-line-or-beginning-search # Up
+bindkey "^[[B" down-line-or-beginning-search # Down
 
 #git prompt
 function __git_prompt_git() {
@@ -95,6 +106,12 @@ RPROMPT=$(right_prompt)
 
 #aliases
 alias gl='git log --date=short --pretty=format:'\''%Cgreen%h %Cblue%cd %Cred%an%Creset: %s'\'
+alias hg='history | grep'
 
 #sources
-source /Users/cameronmorgan/src/github/zsh-users/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source /Users/cameronmorgan/src/github.com/zsh-users/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+# cloudplatform: add Shopify clusters to your local kubernetes config
+export KUBECONFIG=${KUBECONFIG:+$KUBECONFIG:}/Users/cameronmorgan/.kube/config:/Users/cameronmorgan/.kube/config.shopify.cloudplatform
+for file in /Users/cameronmorgan/src/github.com/Shopify/cloudplatform/workflow-utils/*.bash; do source ${file}; done
+kubectl-short-aliases
