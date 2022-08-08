@@ -9,8 +9,6 @@
 autoload -Uz vcs_info
 autoload -U colors && colors
 precmd() { vcs_info }
-autoload -Uz compinit
-compinit
 
 #colors
 ZSH_THEME_GIT_PROMPT_PREFIX="["
@@ -106,12 +104,7 @@ RPROMPT=$(right_prompt)
 
 #aliases
 alias gl='git log --date=short --pretty=format:'\''%Cgreen%h %Cblue%cd %Cred%an%Creset: %s'\'
-alias hg='history | grep'
+alias pr='/Users/cameronmorgan/src/github/cameron-p-m/dotfiles/06-open-pr.sh'
 
 #sources
-source /Users/cameronmorgan/src/github.com/zsh-users/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-
-# cloudplatform: add Shopify clusters to your local kubernetes config
-export KUBECONFIG=${KUBECONFIG:+$KUBECONFIG:}/Users/cameronmorgan/.kube/config:/Users/cameronmorgan/.kube/config.shopify.cloudplatform
-for file in /Users/cameronmorgan/src/github.com/Shopify/cloudplatform/workflow-utils/*.bash; do source ${file}; done
-kubectl-short-aliases
+source /Users/cameronmorgan/src/github/zsh-users/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
