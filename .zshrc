@@ -91,8 +91,6 @@ function parse_git_dirty() {
   fi
 }
 
-
-
 # Format the vcs_info_msg_0_ variable
 zstyle ':vcs_info:git:*' formats '[%b]'
  
@@ -105,6 +103,9 @@ RPROMPT=$(right_prompt)
 #aliases
 alias gl='git log --date=short --pretty=format:'\''%Cgreen%h %Cblue%cd %Cred%an%Creset: %s'\'
 alias pr='/Users/cameronmorgan/src/github/cameron-p-m/dotfiles/06-open-pr.sh'
+alias d='cd /Users/cameronmorgan/src/github/cameron-p-m'
 
 #sources
 source /Users/cameronmorgan/src/github/zsh-users/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
