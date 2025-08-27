@@ -7,6 +7,9 @@ export PATH=$PATH:$PWD/bin
 # homebrew
 [[ -x /opt/homebrew/bin/brew ]] && eval $(/opt/homebrew/bin/brew shellenv)
 
+# aliases
+alias gl='git log --date=short --pretty=format:'\''%Cgreen%h %Cblue%cd %Cred%an%Creset: %s'\'
+
 #history search
 # start typing + [Up-Arrow] - fuzzy find history forward
 autoload -U up-line-or-beginning-search
