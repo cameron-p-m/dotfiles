@@ -1,19 +1,6 @@
 # sets up program d
 source ~/.d/bin/env.sh
 
-# function to get current git branch
-get_git_branch() {
-  local branch
-  branch=$(git symbolic-ref --short HEAD 2>/dev/null || git describe --tags --exact-match 2>/dev/null)
-  [[ -n $branch ]] && echo "[$branch]"
-}
-
-# sets the prompt
-autoload -Uz vcs_info
-
-setopt prompt_subst
-PROMPT=' %F{blue}%2c %F{green}$(get_git_branch)%F{blue} →%f '
-
 # path for binaries
 export PATH=$PATH:$PWD/bin
 
@@ -29,6 +16,11 @@ zle -N down-line-or-beginning-search
 bindkey "^[[A" up-line-or-beginning-search # Up
 bindkey "^[[B" down-line-or-beginning-search # Down
 
+# sets up starship
+eval "$(starship init zsh)"
 
-## git prompt to show the branch
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/cameronmorgan/Downloads/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/cameronmorgan/Downloads/google-cloud-sdk/path.zsh.inc'; fi
 
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/cameronmorgan/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/cameronmorgan/Downloads/google-cloud-sdk/completion.zsh.inc'; fi
